@@ -1,30 +1,28 @@
-#!/bin/bash
+#!/bin/bash/env sh
 
 dir_target=$1
+cp -R images $dir_target
 dir_images=$dir_target"/images"
-
-cd $dir_target
-
-rights=$(ls -ld .)
 
 if [ -w "$dir_target" ]
 then
-	mkdir -p website
+	mkdir -p $dir_target
+	touch config.txt
+	echo "$(cd "$(dirname "$dir_target")"; pwd -P)"/$dir_target>config.txt #write absolute path
 else
 	echo "$dir_target does not have writing rights, build canceled"
         exit 1
 fi
+touch website/comments.txt
 
 touch website/index.html
-echo "<h1>Titre du site</h1>">website/index.html
+echo "<h1>Titre du site</h1>">$dir_target/index.html
 
 for entry in "$dir_images"/*
 do
 	src="$(basename "$entry")"
-	echo "<img src='../images/$src'>">>website/index.html
+	echo "<img src='../images/$src'>">>$dir_target/index.html
 done
+echo "<h1>Commentaires</h1>">>$dir_target/index.html
 
-#echo "<img src='../images/img1.jpg'>">>website/index.html
-#echo "<img src='../images/img2.jpg'>">>website/index.html
-#echo "<img src='../images/img3.jpg'>">>website/index.html
-#echo "<img src='../images/img4.jpg'>">>website/index.html
+
