@@ -1,4 +1,18 @@
 #!/bin/bash/env sh
+source ./help.sh
+
+if [ -z $1 ]; then
+    Help
+    exit 1
+fi
+
+while getopts ":h" option; do
+   case $option in
+      h) # display Help
+         Help
+         exit;;
+   esac
+done
 
 dir_target=$1
 cp -R images $dir_target
