@@ -39,4 +39,6 @@ do
 done
 echo "<h1>Commentaires</h1>">>$dir_target/index.html
 
+open "$dir_target/index.html"
+
 

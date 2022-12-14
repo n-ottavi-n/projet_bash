@@ -28,6 +28,9 @@ then
 
     source ./refresh_site.sh
     refreshSite
+
+    website_dir=`cat config.txt`
+    open "$website_dir/index.html"
 	fi
 else
 	echo "website folder does not exist"
