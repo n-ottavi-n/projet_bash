@@ -17,4 +17,7 @@ else
 	echo "please run genereSite.sh first"
 fi
 
-sh ./refresh_site.sh
+source ./refresh_site.sh
+refreshSite
+
+
